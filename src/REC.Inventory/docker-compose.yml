@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: REC.Inventory.Web/Dockerfile
+    image: inventory-image
+    env_file:
+      - web.env
+    volumes:
+    - my-data:/app/Logs
+    ports:
+      - "8000:80"
+    entrypoint: ["dotnet", "REC.Inventory.Web.dll"]
+
+volumes:
+    my-data:
+      external: true
+

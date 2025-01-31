@@ -1,0 +1,101 @@
+﻿@model StockUpdateModel
+
+<div class="modal fade" id="UpdateStockModal" tabindex="-1" aria-labelledby="UpdateStockLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form asp-action="Update" method="post">
+                @Html.AntiForgeryToken()
+            <div class="modal-header text-center">
+                    <h4 class="text-center w-100">Current Stock</h4>
+            </div>            
+                <div class="modal-body">
+                    <div>
+                        <table id="stocks" class="table table-bordered table-striped">
+                            <thead style="background: #17A2B8">
+                                <tr>
+                                    <th class="text-center" style="color:white">Product Name</th>
+                                    <th class="text-center" style="color:white">Warehouse</th>
+                                    <th class="text-center" style="color:white">Stock Available</th>
+                                    <th class="text-center" style="color:white">Cost per unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        <p class="text-center">@Model.ProductName</p>
+                                    </th>
+                                    <th>
+                                        <p class="text-center">@Model.WarehouseName</p>
+                                    </th>
+                                    <th>
+                                        <p class="text-center">@Model.Quantity</p>
+                                    </th>
+                                    <th>
+                                        <p class="text-center">@Model.PurchasePrice</p>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h4 class="text-center">Add Stock</h4>
+                    </div>
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="ProductId" />
+                    <input type="hidden" asp-for="WarehouseId" />
+                    <input type="hidden" asp-for="PurchasePrice" />
+                    <input type="hidden" asp-for="SellingPrice" />
+                    <input type="hidden" asp-for="Quantity" />
+                    <input type="hidden" asp-for="Profit" />
+                    <div>
+                        <table id="stocks" class="table table-bordered table-striped">
+                            <thead style="background: #17A2B8">
+                                <tr>
+                                    <th class="text-center" style="color:white">Date</th>
+                                    <th class="text-center" style="color:white">Quantity</th>
+                                    <th class="text-center" style="color:white">Current Price</th>
+                                    <th class="text-center" style="color:white">Reason</th>
+                                    <th class="text-center" style="color:white">Note</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        <input type="date" asp-for="Date" class="form-control" />
+                                        <span asp-validation-for="Date" class="text-danger"></span>
+                                    </th>
+                                    <th>
+                                        <input type="text" asp-for="AddStock" class="form-control" placeholder="Insert quantity" />
+                                        <span asp-validation-for="AddStock" class="text-danger"></span>
+                                    </th>
+                                    <th>
+                                        <input type="text" asp-for="CostPerUnit" class="form-control" placeholder="Unit price" />
+                                        <span asp-validation-for="CostPerUnit" class="text-danger"></span>
+                                    </th>
+                                    <th>
+                                        <select asp-for="Reason" class="form-control" placeholder="Select Reason">
+                                            <option value="Stock Out" selected="selected">Stock Out</option>
+                                            <option value="New Available" selected="selected">New Available</option>
+                                        </select>
+                                        <span asp-validation-for="Reason" class="text-danger"></span>
+                                    </th>
+                                    <th>
+                                        <input type="text" asp-for="Note" class="form-control" placeholder="Note" />
+                                        <span asp-validation-for="Note" class="text-danger"></span>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>                                    
+                </div>
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">
+                        <i class="bi bi-x-circle"></i>
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
