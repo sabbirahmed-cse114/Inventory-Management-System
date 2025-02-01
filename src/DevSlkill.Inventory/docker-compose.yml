@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: DevSkill.Inventory.Web/Dockerfile
+    image: inventory-image
+    env_file:
+      - web.env
+    volumes:
+    - my-data:/app/Logs
+    ports:
+      - "8000:80"
+    entrypoint: ["dotnet", "DevSkill.Inventory.Web.dll"]
+
+volumes:
+    my-data:
+      external: true
+
